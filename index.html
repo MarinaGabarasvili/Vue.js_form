@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--    Vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Application Form</title>
+</head>
+<body class="body">
+<div class="container">
+    <header class='app-form-header'>
+        <h1>Application Form</h1>
+        <p><em>Please fill the application form for registration.</em></p>
+    </header>
+
+    <form id="app" action='index.html' method='post' @submit="checkForm" class='app-form' novalidate="true">
+
+        <p v-if="errors.length">
+            <b>Please correct the following error(s):</b>
+        <ul>
+            <li v-for="error in errors" class="alert alert-warning">{{ error }}</li>
+        </ul>
+        </p>
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" v-model="name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="surname" class="col-sm-2 col-form-label">Surname</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="surname" v-model="surname">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" v-model="email">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Phone number</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" id="phone" v-model="phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="bday" class="col-sm-2 col-form-label">Birth date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="bday" v-model="bday">
+            </div>
+        </div>
+        <hr>
+        <div class="greeting">
+            <p>
+                Hello, {{name}}! Nice to meet you! Here are some questions we want to ask you: some of them are logical,
+                some about programming. Pay attention: if there are multiple answers possible - it will be mentioned in
+                brackets.
+            </p>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="qCoding">1. Why do you want to learn coding?</label>
+            <textarea class="form-control" id="qCoding" rows="3" v-model="qCoding"></textarea>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="qExperience">2. What is your coding experience (education, courses, self education)?</label>
+            <textarea class="form-control" id="qExperience" rows="3" v-model="qExperience"></textarea>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="qLogic1">3. What should come next in this series?
+                14, 28, 20, 40, 32, 64, …</label>
+            <textarea class="form-control" id="qLogic1" rows="1" v-model="qLogic1"></textarea>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="qLogic2">4. The average age of a man and his son is 28 years. The ratio of their ages is 3:1
+                respectively. What is the man's age?</label>
+            <textarea class="form-control" id="qLogic2" rows="1" v-model="qLogic2"></textarea>
+        </div>
+        <hr>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-12 pt-0">5. All variables in PHP start with which symbol?</legend>
+                <div class="col-sm-12">
+                    <div class="form-check form-check-inline col-sm-3">
+                        <input class="form-check-input" type="radio" name="radioQ1" id="radioQ1Choice1" value="option1"
+                               v-model="quizzQ1">
+                        <label class="form-check-label" for="radioQ1Choice1">%</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-3">
+                        <input class="form-check-input" type="radio" name="radioQ1" id="radioQ1Choice2" value="option2"
+                               v-model="quizzQ1">
+                        <label class="form-check-label" for="radioQ1Choice2">$</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-3">
+                        <input class="form-check-input" type="radio" name="radioQ1" id="radioQ1Choice3" value="option3"
+                               v-model="quizzQ1">
+                        <label class="form-check-label" for="radioQ1Choice3">#</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-12 pt-0">6. Int holds decimal numbers.</legend>
+                <div class="col-sm-12">
+                    <div class="form-check form-check-inline col-sm-3">
+                        <input class="form-check-input" type="radio" name="radioQ2" id="radioQ2Choice1" value="option1"
+                               v-model="quizzQ2">
+                        <label class="form-check-label" for="radioQ2Choice1">True</label>
+                    </div>
+                    <div class="form-check form-check-inline col-sm-3">
+                        <input class="form-check-input" type="radio" name="radioQ2" id="radioQ2Choice2" value="option2"
+                               v-model="quizzQ2">
+                        <label class="form-check-label" for="radioQ2Choice2">False</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <hr>
+            <p>7. How should we add a single line comment in our PHP code? (multiple answers possible)</p>
+            <div class="form-check form-check-inline col-sm-4">
+                <input class="form-check-input" type="checkbox" id="checkbox1" value="option1" v-model="quizzQ3">
+                <label class="form-check-label" for="checkbox1">/?</label>
+            </div>
+            <div class="form-check form-check-inline col-sm-4">
+                <input class="form-check-input" type="checkbox" id="checkbox2" value="option2" v-model="quizzQ3">
+                <label class="form-check-label" for="checkbox2">//</label>
+            </div>
+            <div class="form-check form-check-inline col-sm-4">
+                <input class="form-check-input" type="checkbox" id="checkbox3" value="option3" v-model="quizzQ3">
+                <label class="form-check-label" for="checkbox3">#</label>
+            </div>
+            <div class="form-check form-check-inline col-sm-4">
+                <input class="form-check-input" type="checkbox" id="checkbox4" value="option4" v-model="quizzQ3">
+                <label class="form-check-label" for="checkbox4">/* */</label>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <input type="submit" value="SUBMIT" class="btn btn-info btn-lg btn-block">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+
+<!-- JavaScript -->
+<script src="app.js"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
